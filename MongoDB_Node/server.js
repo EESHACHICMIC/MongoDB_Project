@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const body_parser = require('body-parser')
 app.use(express.json())
 
-mongoose.connect("mongodb://localhost:27017/StudentDB", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb://localhost:27017/StudentDB",
+    { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connection successful"))
     .catch((err) => console.log(err));
 
