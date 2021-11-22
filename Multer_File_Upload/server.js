@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const multer = require('multer');
-const path=require('path')
+const path = require('path')
 const app = express();
 const port = 5000;
 
@@ -10,7 +10,7 @@ const fileStorageEngine = multer.diskStorage({
         cb(null, './images')
     },
     filename: (req, file, cb) => {
-        cb(null,file.originalname)
+        cb(null, file.originalname)
     }
 })
 
@@ -25,5 +25,9 @@ app.post('/single', upload.single('image'), (req, res) => {
     res.send("Single file is uploaded successfully")
 })
 
+app.post('/multiple', upload.array('image', 3), (req, res) => {
+    console.log("req.files")
+    res.send('Multiple file is uploaded successfully..')
+})
 
 app.listen(port, () => console.log(`server is running ${port}`))
